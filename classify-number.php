@@ -1,7 +1,9 @@
 <?php
+
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 
+// Response for invalid request
 if (!isset($_GET['number']) || !is_numeric($_GET['number'])) {
     echo json_encode([
         "number" => $_GET['number'] ?? null,
@@ -11,6 +13,7 @@ if (!isset($_GET['number']) || !is_numeric($_GET['number'])) {
     exit;
 }
 
+// Get number from query string
 $number = intval($_GET['number']);
 $response = [
     "number" => $number,
@@ -77,4 +80,5 @@ function getFunFact($num) {
     $fact = @file_get_contents($api_url);
     return $fact ?: "No fun fact available.";
 }
+
 ?>
